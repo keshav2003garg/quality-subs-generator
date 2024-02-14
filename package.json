@@ -1,0 +1,41 @@
+{
+    "name": "quality-subs-generator",
+    "version": "1.0.0",
+    "description": "Generate high-quality subtitles for your videos effortlessly! This npm package combines the power of ffmpeg and the advanced whisper model to provide a seamless solution for converting videos into different quality formats with accurate subtitles.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "ts-node-dev src/index.ts",
+        "start": "ts-node src/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/keshav2003garg/quality-subs-generator.git"
+    },
+    "keywords": [
+        "ffmpeg",
+        "whisper",
+        "generate-subtitles",
+        "different-video-qualities"
+    ],
+    "author": "Keshav Garg",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/keshav2003garg/quality-subs-generator/issues"
+    },
+    "homepage": "https://github.com/keshav2003garg/quality-subs-generator#readme",
+    "dependencies": {
+        "dockerode": "^4.0.2"
+    },
+    "devDependencies": {
+        "@types/dockerode": "^3.3.23",
+        "@types/node": "^20.11.17",
+        "@typescript-eslint/eslint-plugin": "^7.0.1",
+        "@typescript-eslint/parser": "^7.0.1",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "prettier": "^3.2.5",
+        "ts-node": "^10.9.2",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.3.3"
+    }
+}
