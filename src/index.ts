@@ -4,9 +4,13 @@ import printLogs from './utils/printLogs';
 
 import type { IStartService } from './types/startService';
 
-const startService = async ({ logs = true, ...props }: IStartService) => {
+const startService = async ({
+    logs = true,
+    imageBuildOptions,
+    ...props
+}: IStartService) => {
     const imageName = 'quality-subs-generator';
-    await buildImage(imageName);
+    await buildImage(imageName, imageBuildOptions.logs);
     const container = await createContainer(props);
     await container.start();
     if (logs) {
@@ -21,6 +25,7 @@ startService({
     outputDirectory: `${process.cwd()}/dist/output`,
     qualities: ['144'],
     logs: true,
+    imageBuildOptions: { logs: true },
 })
     .then(() => {
         console.log('Service finished');
@@ -28,4 +33,5 @@ startService({
     .catch((error) => {
         console.error(error);
     });
+
 export default startService;

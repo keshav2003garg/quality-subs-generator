@@ -1,45 +1,15 @@
-import { spawn } from 'child_process';
-import fs from 'fs';
+import generateDifferentQualities from './utils/generateDifferentQualities';
+import generateSubs from './utils/generateSubs';
 
-const transcodeVideo = (
+const startProcessing = (
     videoName: string,
     outputPath: string,
     qualities: Array<string>,
 ) => {
     const currentDate = new Date();
     const timestamp = currentDate.getTime().toString();
-    fs.mkdirSync(`${outputPath}/${timestamp}`);
-    const name = videoName.split('.').slice(0, -1).join('.');
-    qualities.forEach((quality: string) => {
-        const ffmpegCommand = spawn('ffmpeg', [
-            '-i',
-            `/app/input/${videoName}`,
-            '-c:v',
-            'libx264',
-            '-c:a',
-            'libmp3lame',
-            '-vf',
-            `scale=-2:${quality}`,
-            `${outputPath}/${timestamp}/${name}_${quality}p.mp4`,
-        ]);
-        ffmpegCommand.stdout.on('data', (data) => {
-            console.log(`${data}`);
-        });
-        ffmpegCommand.stderr.on('data', (data) => {
-            console.error(`${data}`);
-        });
-        ffmpegCommand.on('close', (code) => {
-            if (code === 0) {
-                console.log(
-                    `Video with quality ${quality} generation completed`,
-                );
-            } else {
-                console.error(
-                    `Video with quality ${quality} generation failed with code ${code}`,
-                );
-            }
-        });
-    });
+    generateDifferentQualities(videoName, outputPath, timestamp, qualities);
+    generateSubs(videoName, outputPath, timestamp);
 };
 
 const videoName = process.env.VIDEO_NAME;
@@ -56,4 +26,4 @@ if (!qualities) {
 }
 const qualitiesArray = JSON.parse(qualities);
 
-transcodeVideo(videoName, outputPath, qualitiesArray);
+startProcessing(videoName, outputPath, qualitiesArray);

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd /app/src && yarn start
+cd /app/src && node dist/index.js

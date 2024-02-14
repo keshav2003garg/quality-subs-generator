@@ -5,4 +5,7 @@ export interface IStartService {
     outputDirectory: string;
     qualities: AllowedQualities[];
     logs?: boolean;
+    imageBuildOptions?: {
+        logs?: boolean;
+    };
 }
