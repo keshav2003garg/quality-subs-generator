@@ -24,7 +24,8 @@
     },
     "homepage": "https://github.com/keshav2003garg/quality-subs-generator#readme",
     "dependencies": {
-        "dockerode": "^4.0.2"
+        "dockerode": "^4.0.2",
+        "random-word-slugs": "^0.1.7"
     },
     "devDependencies": {
         "@types/dockerode": "^3.3.23",
