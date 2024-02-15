@@ -4,8 +4,8 @@
     "description": "Generate high-quality subtitles for your videos effortlessly! This npm package combines the power of ffmpeg and the advanced whisper model to provide a seamless solution for converting videos into different quality formats with accurate subtitles.",
     "main": "index.js",
     "scripts": {
-        "dev": "ts-node-dev src/index.ts",
-        "start": "ts-node src/index.ts"
+        "dev": "ts-node-dev example/index.ts",
+        "start": "ts-node example/index.ts"
     },
     "repository": {
         "type": "git",

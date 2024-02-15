@@ -1,16 +1,20 @@
-import buildImage from '../docker/lib/buildImage';
+import buildImage from './utils/buildImage';
 import createContainer from './utils/createContainer';
 import printLogs from './utils/printLogs';
 
-import type { IStartService } from './types/startService';
+import type { IStartProcessing } from './types';
 
-const startService = async ({
+const startProcessing = async ({
     logs = true,
     imageBuildOptions,
     ...props
-}: IStartService) => {
+}: IStartProcessing) => {
     const imageName = 'quality-subs-generator';
-    await buildImage(imageName, imageBuildOptions.logs);
+    await buildImage(
+        imageName,
+        imageBuildOptions.logs,
+        props.whisperOptions.modelName,
+    );
     const container = await createContainer(props);
     await container.start();
     if (logs) {
@@ -20,18 +24,4 @@ const startService = async ({
     await container.remove();
 };
 
-startService({
-    inputVideoPath: `${process.cwd()}/dist/video.mp4`,
-    outputDirectory: `${process.cwd()}/dist/output`,
-    qualities: ['144'],
-    logs: true,
-    imageBuildOptions: { logs: true },
-})
-    .then(() => {
-        console.log('Service finished');
-    })
-    .catch((error) => {
-        console.error(error);
-    });
-
-export default startService;
+export default startProcessing;

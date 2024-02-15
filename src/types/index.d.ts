@@ -1,6 +1,8 @@
+import { WhisperOptions } from './whisper';
+
 type AllowedQualities = '144' | '240' | '360' | '480' | '720' | '1080';
 
-export interface IStartService {
+export interface IStartProcessing {
     inputVideoPath: string;
     outputDirectory: string;
     qualities: AllowedQualities[];
@@ -8,4 +10,5 @@ export interface IStartService {
     imageBuildOptions?: {
         logs?: boolean;
     };
+    whisperOptions: WhisperOptions;
 }

@@ -1,11 +1,14 @@
 import { spawn } from 'child_process';
 import fs from 'fs';
-import whisper from './whisper';
+import whisper from '../lib/whisper';
+
+import type { WhisperOptions } from '../types/whisper';
 
 const generateSubs = (
     videoName: string,
     outputPath: string,
     timestamp: string,
+    whisperOptions: WhisperOptions,
 ) => {
     fs.mkdirSync(`/app/temp/${timestamp}/audio`, { recursive: true });
     const name = videoName.split('.').slice(0, -1).join('.');
@@ -27,7 +30,7 @@ const generateSubs = (
     videoToAudioCommand.on('close', (code: number) => {
         if (code === 0) {
             console.log('Audio generation completed');
-            whisper(outputPath, timestamp, name);
+            whisper(outputPath, timestamp, name, whisperOptions);
         } else {
             console.error(`Audio generation failed with code ${code}`);
         }

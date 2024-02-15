@@ -1,16 +1,24 @@
 import { spawn } from 'child_process';
 
-const whisper = (outputPath: string, timestamp: string, name: string) => {
+import type { WhisperOptions } from '../types/whisper';
+
+const whisper = (
+    outputPath: string,
+    timestamp: string,
+    name: string,
+    whisperOptions: WhisperOptions,
+) => {
+    const outputFormat = whisperOptions.outputFormat;
+    const outputDirectory = whisperOptions.outputDirectory;
+    const modelName = whisperOptions.modelName;
     const whisperCommand = spawn('whisper', [
         `/app/temp/${timestamp}/audio/${name}.wav`,
         '--model',
-        'tiny.en',
-        '--language',
-        'English',
+        modelName,
         '--output_format',
-        'srt',
+        outputFormat,
         '--output_dir',
-        `${outputPath}/${timestamp}`,
+        `${outputPath}/${timestamp}/${outputDirectory}`,
     ]);
     whisperCommand.stdout.on('data', (data: string) => {
         console.log(`${data}`);
