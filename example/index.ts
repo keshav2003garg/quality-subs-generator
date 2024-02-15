@@ -1,6 +1,6 @@
 import startProcessing from '../src/index';
 
-const example = async () => {
+const processVideoWithSubtitles = async () => {
     try {
         await startProcessing({
             inputVideoPath: `${process.cwd()}/dist/video.mp4`,
@@ -8,7 +8,7 @@ const example = async () => {
             qualities: ['144'],
             logs: true,
             imageBuildOptions: { logs: true },
-            whisperOptions: { outputFormat: 'srt' },
+            whisperOptions: { outputFormat: 'srt', modelName: 'tiny' },
         });
         console.log('Service finished');
     } catch (error) {
@@ -16,4 +16,4 @@ const example = async () => {
     }
 };
 
-example();
+processVideoWithSubtitles();
