@@ -1,0 +1,13 @@
+/src
+/docker
+index.ts
+example/
+node_modules/
+tsconfig.json
+.editorconfig
+.prettierrc.json
+.prettierignore
+.eslintrc.js
+.eslintignore
+.gitignore
+CONTRIBUTING.md

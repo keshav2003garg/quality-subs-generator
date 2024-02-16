@@ -1,8 +1,8 @@
-import buildImage from './utils/buildImage';
-import createContainer from './utils/createContainer';
-import printLogs from './utils/printLogs';
+import buildImage from './src/utils/buildImage';
+import createContainer from './src/utils/createContainer';
+import printLogs from './src/utils/printLogs';
 
-import type { IStartProcessing } from './types';
+import type { IStartProcessing } from './src/types';
 
 const startProcessing = async ({
     logs = true,

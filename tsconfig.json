@@ -5,13 +5,13 @@
         "target": "ES2021",
         "noImplicitAny": true,
         "moduleResolution": "node",
-        "sourceMap": true,
         "outDir": "dist",
         "baseUrl": ".",
+        "declaration": true,
         "paths": {
             "*": ["node_modules/*"]
         }
     },
-    "include": ["**/*"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["src/**/*", "docker/**/*", "index.ts"],
+    "exclude": ["node_modules", "dist", "example", "docker/app/src"]
 }
